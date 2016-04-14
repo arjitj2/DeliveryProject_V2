@@ -1,6 +1,6 @@
 var sift = require('sift');
 var GoogleMapsAPI = require('googlemaps')
-var addressData = require('./data.json'); //with path
+var addressData = require('./data.json').addresses; //with path
 var matrix = new Array(100);
 var x = 0
 var y = 0
@@ -19,16 +19,30 @@ function begin_data_collection() {
   var interval = setInterval(
     function() {
       if(y < 100) {
-        gmAPI.directions({
-          origin: 'Madison , Wi, USA',
-          destination: 'Chicago, Il, USA'
-        }, callback);
+        if(x!=y) {
+          gmAPI.directions({
+            origin: addressData[x].add,
+            destination: addressData[y].add
+          }, callback);
+          console.log(addressData[x].add)
+          console.log(addressData[y].add)
+          console.log('BITCHACHO')
+        } else {
+          matrix[x][y] = 0
+        }
         y++
       } else {
         y = 0
         x += 1
         if(x < 100) {
-          console.log(x + " " + y) 
+          if(x!=y) {
+            gmAPI.directions({
+              origin: addressData[x].add,
+              destination: addressData[y].add
+            }, callback);
+          } else {
+            matrix[x][y] = 0
+          }
         } else {
           clearInterval(interval)
         }
