@@ -26,7 +26,7 @@ function begin_data_collection() {
           }, callback);
           console.log(addressData[x].add)
           console.log(addressData[y].add)
-          console.log('BITCHACHO')
+          console.log('same')
         } else {
           matrix[x][y] = 0
         }
