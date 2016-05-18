@@ -1,0 +1,157 @@
+//initialize the motor as well as all the other components 
+int forward_right = 4; //Switch 1
+int backward_right = 7; //Switch 2
+int forward_left = 8; //Switch 3
+int backward_left = 12; //Switch 4
+int horn = 2;
+
+
+char btLetter;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(forward_right, OUTPUT);
+  pinMode(backward_right, OUTPUT);
+  pinMode(forward_left, OUTPUT);
+  pinMode(backward_left, OUTPUT);
+  pinMode(horn, OUTPUT);
+  
+}
+
+void loop() {
+  btLetter = Serial.read();
+  
+  // Beep Horn
+  if(btLetter == 'V'){
+   tone(2, 440); 
+  }
+  if(btLetter == 'v'){
+   noTone(2);
+  }
+  
+  //Forwards
+  if(btLetter == 'F')
+    { 
+      digitalWrite(forward_right,HIGH);
+      digitalWrite(backward_right,LOW);
+      digitalWrite(forward_left,HIGH);
+      digitalWrite(backward_left,LOW);
+    }
+
+   //Backwards
+   if(btLetter == 'I')
+    {
+      
+
+      digitalWrite(forward_right,HIGH);
+      digitalWrite(backward_right,LOW);
+      digitalWrite(forward_left,HIGH);
+      digitalWrite(backward_left,LOW);
+
+      digitalWrite(forward_right,HIGH);
+      digitalWrite(backward_right,LOW);
+      digitalWrite(forward_left,LOW);
+      digitalWrite(backward_left,LOW);
+      
+    }
+
+   //Forwards_Left
+   if(btLetter == 'G')
+    {
+      
+      
+      digitalWrite(forward_right,HIGH);
+      digitalWrite(backward_right,LOW);
+      digitalWrite(forward_left,HIGH);
+      digitalWrite(backward_left,LOW);
+
+      digitalWrite(forward_right,LOW);
+      digitalWrite(backward_right,LOW);
+      digitalWrite(forward_left,HIGH);
+      digitalWrite(backward_left,LOW);
+      
+    }
+
+   //Right
+   if(btLetter == 'R')
+   {
+      
+      
+      digitalWrite(forward_right,HIGH);
+      digitalWrite(backward_right,LOW);
+      digitalWrite(forward_left,LOW);
+      digitalWrite(backward_left,LOW);
+      
+   }
+
+   //Left
+   if(btLetter == 'L')
+   {
+    
+      
+      digitalWrite(forward_right,LOW);
+      digitalWrite(backward_right,LOW);
+      digitalWrite(forward_left,HIGH);
+      digitalWrite(backward_left,LOW);
+      
+   }
+
+   //Backward
+   if(btLetter == 'B')
+   {
+      
+      
+      digitalWrite(forward_right,LOW);
+      digitalWrite(backward_right,HIGH);
+      digitalWrite(forward_left,LOW);
+      digitalWrite(backward_left,HIGH);
+      tone(2, 600); 
+   }
+
+   //Backward_Left
+   if(btLetter == 'H')
+   {
+      
+      digitalWrite(forward_right,LOW);
+      digitalWrite(backward_right,HIGH);
+      digitalWrite(forward_left,LOW);
+      digitalWrite(backward_left,HIGH);
+      
+      digitalWrite(forward_right,LOW);
+      digitalWrite(backward_right,HIGH);
+      digitalWrite(forward_left,LOW);
+      digitalWrite(backward_left,LOW);
+      
+      tone(2, 600); 
+      
+   }
+   //Backward_Right 
+   if(btLetter == 'J')
+   {
+      
+      digitalWrite(forward_right,LOW);
+      digitalWrite(backward_right,HIGH);
+      digitalWrite(forward_left,LOW);
+      digitalWrite(backward_left,HIGH);
+      
+      digitalWrite(forward_right,LOW);
+      digitalWrite(backward_right,LOW);
+      digitalWrite(forward_left,LOW);
+      digitalWrite(backward_left,HIGH);
+
+      tone(2, 600); 
+      
+   }
+
+  //STAY
+  else if(btLetter == 'S')
+    {
+      digitalWrite(forward_right,LOW);
+      digitalWrite(backward_right,LOW);
+      digitalWrite(forward_left,LOW);
+      digitalWrite(backward_left,LOW);
+    }
+}
+
+
